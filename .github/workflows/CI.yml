@@ -19,14 +19,11 @@ jobs:
         id: create-release
         with:
           tag_name: ${{ format('{0}-test-release', github.sha) }}
+          name: "CI test release"
+          body: |
+            # Heading
+
+            This is a test release with some markdown.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Validate that release exists
         run: curl --fail ${{ steps.create-release.outputs.url }}
-#      - name: Delete release
-#        run: |
-#          curl \
-#            -X DELETE \
-#            -H 'Accept: application/vnd.github.v3+json' \
-#            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-#            ${{ steps.create-release.outputs.url }}
-#        if: always()
