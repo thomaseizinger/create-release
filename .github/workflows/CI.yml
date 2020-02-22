@@ -18,7 +18,7 @@ jobs:
       - uses: ./
         id: create-release
         with:
-          tag_name: format('{0}-test-release', ${{ github.sha }})
+          tag_name: ${{ format('{0}-test-release', github.sha) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Validate that PR exists
         run: curl --fail ${{ steps.create-release.outputs.url }}
