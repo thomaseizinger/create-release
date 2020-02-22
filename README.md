@@ -2,7 +2,7 @@
 
 A better GitHub action for creating releases.
 
-How is this different from the ["official"](https://github.com/actions/create-release) GitHub action?
+How is this different from the official GitHub action [@actions/create-release](https://github.com/actions/create-release)?
 The official one has several shortcomings:
 
 1. It is not well-maintained: https://github.com/actions/create-release/pull/32#issuecomment-579774032
@@ -14,7 +14,7 @@ Certainly though, I tried to make the default behaviour of this action better!
 
 ## Features
 
-- By default, the commit `GITHUB_SHA` is pointing to will be tagged.
+- By default, release is going to reference the commit `GITHUB_SHA` is pointing to.
 - If `GITUHB_REF` [exists](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) and is a tag (i.e. `refs/tags/x.y.z`), `tag_name` will be set to this tag.
 - The action exposes all fields that are available on the GitHub API call.
 - The action inputs are named after the API fields to avoid confusion.
