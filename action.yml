@@ -2,6 +2,7 @@ name: 'Just Create A Release'
 description: 'Creates releases on Github.'
 author: 'Thomas Eizinger'
 branding:
+  icon: star
   color: white
 inputs:
   github_token:
