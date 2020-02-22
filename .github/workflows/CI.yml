@@ -1,0 +1,32 @@
+name: Continuous integration
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - run: yarn install
+      - run: yarn test
+
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: create-release
+        with:
+          tag_name: format('{0}-test-release', ${{ env.GITHUB_SHA }})
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Validate that PR exists
+        run: curl --fail ${{ steps.create-release.outputs.url }}
+      - name: Delete release
+        run: |
+          curl \
+            -X DELETE \
+            -H 'Accept: application/vnd.github.v3+json' \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            ${{ steps.create-release.outputs.url }}
+        if: always()
