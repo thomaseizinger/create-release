@@ -1,0 +1,30 @@
+name: 'Just Create A Release'
+description: 'Creates releases on Github.'
+author: 'Thomas Eizinger'
+branding:
+  color: white
+inputs:
+  github_token:
+    description: 'A GitHub API token'
+    required: true
+  tag_name:
+    description: 'The name of the tag for this release. If GITHUB_REF points to a tag (i.e. you are running this action in the context of a tag being pushed), this tag is going to be used. If not, this input is required.'
+    required: false
+  target_commitish:
+    description: "The commit this release should point to. Defaults to GITHUB_SHA."
+    required: false
+  prerelease:
+    description: 'Whether this release is a prerelease.'
+    required: false
+  draft:
+    description: 'Whether this should be a draft release.'
+    required: false
+  body:
+    description: 'The body of the release.'
+    required: false
+  name:
+    description: 'The name of the release.'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
