@@ -1,9 +1,7 @@
-import { getInput } from "@actions/core/lib/core";
-import {ReposCreateReleaseParams} from '@octokit/plugin-rest-endpoint-methods/dist-types/generated/rest-endpoint-methods-types'
+import { getInput } from "@actions/core";
+import {RestEndpointMethodTypes} from '@octokit/plugin-rest-endpoint-methods/dist-types/generated/parameters-and-response-types'
 
-type Inputs = ReposCreateReleaseParams;
-
-export function getInputs(): Inputs {
+export function getInputs(): RestEndpointMethodTypes["repos"]["createRelease"]["parameters"] {
   const draft = getInput("draft") ? JSON.parse(getInput("draft")) : undefined;
   const prerelease = getInput("prerelease") ? JSON.parse(getInput("prerelease")) : undefined;
   const body = getInput("body") || undefined;

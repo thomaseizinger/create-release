@@ -1,13 +1,13 @@
-import {setFailed, setOutput} from '@actions/core'
-import {Octokit} from '@octokit/action'
-import {getInputs} from './getInputs'
+import {setFailed, setOutput, getInput} from '@actions/core';
+import {getInputs} from './getInputs';
+import {getOctokit} from '@actions/github';
 
 async function run(): Promise<void> {
   try {
     const releaseParams = getInputs();
 
-    const octokit = new Octokit();
-    const response = await octokit.repos.createRelease(releaseParams)
+    const octokit = getOctokit(getInput('github_token', {required: true}));
+    const response = await octokit.rest.repos.createRelease(releaseParams);
 
     const {
       data: { id: releaseId, html_url: htmlUrl, upload_url: uploadUrl, url }
