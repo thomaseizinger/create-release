@@ -1,6 +1,9 @@
 name: Continuous integration
 
-on: push
+on:
+  push:
+    branches: [master]
+  pull_request:
 
 jobs:
   test:
@@ -12,6 +15,7 @@ jobs:
       - run: yarn test
 
   create-release:
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
