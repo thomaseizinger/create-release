@@ -12,7 +12,7 @@ inputs:
     description: 'The name of the tag for this release. If GITHUB_REF points to a tag (i.e. you are running this action in the context of a tag being pushed), this tag is going to be used. If not, this input is required.'
     required: false
   target_commitish:
-    description: "The commit this release should point to. Defaults to GITHUB_SHA."
+    description: 'The commit this release should point to. Defaults to GITHUB_SHA.'
     required: false
   prerelease:
     description: 'Whether this release is a prerelease.'
@@ -36,5 +36,5 @@ outputs:
   upload_url:
     description: 'The URL for uploading assets to the created release.'
 runs:
-  using: 'node12'
+  using: 'node20'
   main: 'dist/index.js'
