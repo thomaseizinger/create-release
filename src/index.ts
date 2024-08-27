@@ -17,7 +17,7 @@ async function run(): Promise<void> {
     setOutput('url', url);
     setOutput('html_url', htmlUrl);
     setOutput('upload_url', uploadUrl);
-  } catch (error) {
+  } catch (error: any) {
     setFailed(error.message);
   }
 }
