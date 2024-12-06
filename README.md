@@ -37,5 +37,5 @@ jobs:
     - name: Create a release
       uses: thomaseizinger/create-release@master
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
